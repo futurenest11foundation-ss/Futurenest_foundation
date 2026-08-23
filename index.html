@@ -1,18 +1,838 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FutureNest Foundation</title>
+
+  <title>FutureNest Foundation | Hope • Education • Healthcare</title>
+  <meta name="description" content="FutureNest Foundation works to create a better future for vulnerable women and children in Pakistan through education, healthcare, skills development and community support.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: #18324a;
+      background: #f7fbfd;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid #e5eef2;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #116b68;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #168c82, #72b947);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #345066;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #168c82;
+    }
+
+    .nav-donate {
+      background: #168c82;
+      color: white !important;
+      padding: 11px 18px;
+      border-radius: 30px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(120deg, rgba(8,70,80,.95), rgba(22,140,130,.78)),
+        url("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 30px;
+      margin-bottom: 22px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      font-size: 19px;
+      max-width: 650px;
+      color: #f0ffff;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #116b68;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.7);
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+
+    .section-heading span {
+      color: #168c82;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 13px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.15;
+      margin: 10px 0 15px;
+      color: #173b52;
+    }
+
+    .section-heading p {
+      color: #637988;
+      font-size: 17px;
+    }
+
+    /* MISSION */
+    .mission {
+      background: white;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .mission-text h3 {
+      font-size: 32px;
+      margin-bottom: 18px;
+      color: #173b52;
+    }
+
+    .mission-text p {
+      color: #617686;
+      margin-bottom: 18px;
+    }
+
+    .quote {
+      border-left: 4px solid #72b947;
+      padding-left: 18px;
+      font-weight: 700;
+      color: #236c69;
+    }
+
+    .mission-card {
+      min-height: 330px;
+      border-radius: 25px;
+      padding: 38px;
+      background: linear-gradient(145deg, #e5f7f2, #eff8df);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mission-card .big {
+      font-size: 62px;
+      margin-bottom: 10px;
+    }
+
+    .mission-card h3 {
+      font-size: 28px;
+      color: #175b58;
+      margin-bottom: 10px;
+    }
+
+    /* PROGRAMS */
+    .programs {
+      background: #f7fbfd;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px 23px;
+      border-radius: 20px;
+      border: 1px solid #e4eef1;
+      box-shadow: 0 8px 25px rgba(20,70,90,.05);
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #e6f5ef;
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #183e55;
+    }
+
+    .card p {
+      color: #6a7d89;
+      font-size: 14px;
+    }
+
+    /* IMPACT */
+    .impact {
+      background: #0f4f58;
+      color: white;
+    }
+
+    .impact .section-heading h2,
+    .impact .section-heading p {
+      color: white;
+    }
+
+    .impact .section-heading span {
+      color: #bde88c;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .impact-box {
+      padding: 32px 20px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 20px;
+      text-align: center;
+      background: rgba(255,255,255,.07);
+    }
+
+    .impact-box strong {
+      display: block;
+      font-size: 38px;
+      color: #c8ed9b;
+      margin-bottom: 5px;
+    }
+
+    .impact-box span {
+      color: #e3f4f4;
+    }
+
+    /* FOUNDER */
+    .founder {
+      background: white;
+    }
+
+    .founder-box {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      padding: 50px 30px;
+      border-radius: 28px;
+      background: #f0f8f5;
+    }
+
+    .founder-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #168c82, #72b947);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      font-size: 40px;
+      color: white;
+    }
+
+    .founder-box blockquote {
+      font-size: 21px;
+      color: #345566;
+      font-style: italic;
+      margin: 20px auto;
+      max-width: 720px;
+    }
+
+    .founder-name {
+      font-weight: 800;
+      color: #116b68;
+    }
+
+    /* DONATE */
+    .donate {
+      background: linear-gradient(135deg, #168c82, #0c6263);
+      color: white;
+    }
+
+    .donate-box {
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .donate h2 {
+      font-size: clamp(32px, 5vw, 50px);
+      margin-bottom: 15px;
+    }
+
+    .donate p {
+      font-size: 18px;
+      color: #e8ffff;
+      margin-bottom: 28px;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: #f7fbfd;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid #e3edf0;
+    }
+
+    .contact-card h3 {
+      margin-bottom: 12px;
+    }
+
+    .contact-card a {
+      color: #168c82;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #12333f;
+      color: #c8dadd;
+      padding: 45px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 35px;
+    }
+
+    footer h3 {
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    footer p,
+    footer a {
+      color: #b9cbd0;
+      font-size: 14px;
+    }
+
+    footer a {
+      display: block;
+      margin: 7px 0;
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mission-grid,
+      .contact-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      section {
+        padding: 65px 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 620px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>FutureNest Foundation</h1>
-  <h2>Helping Women & Children</h2>
-  <p>FutureNest Foundation is committed to supporting vulnerable families through education, healthcare, food and community support.</p>
-  <h3>Our Mission</h3>
-  <p>To build a better future for women and children in Pakistan.</p>
-  <p>Thank you for supporting our mission.</p>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">♥</span>
+        <span>FutureNest Foundation</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#mission">Our Mission</a>
+        <a href="#programs">Programs</a>
+        <a href="#impact">Impact</a>
+        <a href="#contact">Contact</a>
+        <a href="#donate" class="nav-donate">Support Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+
+        <span class="eyebrow">Building hope for a better tomorrow</span>
+
+        <h1>Every child deserves a future. Every woman deserves an opportunity.</h1>
+
+        <p>
+          FutureNest Foundation works with vulnerable communities in Pakistan
+          through education, healthcare, skills development and compassionate
+          community support.
+        </p>
+
+        <div class="buttons">
+          <a href="#programs" class="btn btn-primary">Explore Our Work</a>
+          <a href="#donate" class="btn btn-secondary">Support FutureNest</a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MISSION -->
+  <section id="mission" class="mission">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Our Purpose</span>
+        <h2>Creating opportunity where it is needed most</h2>
+        <p>
+          We believe lasting change begins when people receive the opportunity
+          to learn, stay healthy and build a dignified future.
+        </p>
+      </div>
+
+      <div class="mission-grid">
+
+        <div class="mission-text">
+          <h3>Hope in action</h3>
+
+          <p>
+            FutureNest Foundation serves vulnerable women and children and
+            families who face barriers to education, healthcare and economic
+            opportunity.
+          </p>
+
+          <p>
+            Our approach combines practical support today with opportunities
+            that can strengthen families for tomorrow.
+          </p>
+
+          <p class="quote">
+            “Together, we can build a safer, healthier and brighter future.”
+          </p>
+        </div>
+
+        <div class="mission-card">
+          <div class="big">🌱</div>
+          <h3>Planting the future</h3>
+          <p>
+            Education, health and skills can become the foundation for
+            stronger families and communities.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section id="programs" class="programs">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>What We Do</span>
+        <h2>Our Programs</h2>
+        <p>
+          Practical programs designed around the real needs of vulnerable
+          communities.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="icon">📚</div>
+          <h3>Education</h3>
+          <p>
+            Supporting children with educational opportunities, learning
+            resources and a stronger foundation for their future.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🩺</div>
+          <h3>Healthcare</h3>
+          <p>
+            Mobile medical camps, health awareness, basic screening and
+            healthcare support for families with limited access.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">👩‍💻</div>
+          <h3>Girls' Skills</h3>
+          <p>
+            Practical, computer, technical, vocational, stitching,
+            beautician and life/work skills for girls and women.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🤝</div>
+          <h3>Community Support</h3>
+          <p>
+            Compassionate assistance including food and essential support
+            for families facing difficult circumstances.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section id="impact" class="impact">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Our Commitment</span>
+        <h2>Small actions can create lasting change</h2>
+        <p>
+          We focus on direct community work and responsible use of support.
+        </p>
+      </div>
+
+      <div class="impact-grid">
+
+        <div class="impact-box">
+          <strong>01</strong>
+          <span>Education opportunities</span>
+        </div>
+
+        <div class="impact-box">
+          <strong>02</strong>
+          <span>Healthcare access</span>
+        </div>
+
+        <div class="impact-box">
+          <strong>03</strong>
+          <span>Skills & empowerment</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="founder">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Founder</span>
+        <h2>A message of hope</h2>
+      </div>
+
+      <div class="founder-box">
+
+        <div class="founder-avatar">♥</div>
+
+        <blockquote>
+          “Our dream is to create a future where vulnerable children can learn,
+          women can develop skills, families can access healthcare, and every
+          person we serve can feel valued and hopeful.”
+        </blockquote>
+
+        <div class="founder-name">
+          Salma Naveed<br>
+          Founder, FutureNest Foundation
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE -->
+  <section id="donate" class="donate">
+    <div class="container">
+
+      <div class="donate-box">
+
+        <h2>Help us build the next future.</h2>
+
+        <p>
+          Your support can help FutureNest Foundation expand education,
+          healthcare, skills development and community programs for people
+          who need them most.
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+          <a href="mailto:futurenest.11foundation@gmail.com"
+             class="btn btn-primary">
+            Contact Us to Support
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Connect With Us</span>
+        <h2>Let's work together</h2>
+        <p>
+          We welcome responsible partners, donors and supporters who believe
+          in creating opportunity for vulnerable communities.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <h3>📧 Email</h3>
+          <a href="mailto:futurenest.11foundation@gmail.com">
+            futurenest.11foundation@gmail.com
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <h3>📍 Pakistan</h3>
+          <p>
+            Sargodha District, Punjab, Pakistan
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <h3>📸 Instagram</h3>
+          <a
+            href="https://www.instagram.com/futurenest.foundation.pk/"
+            target="_blank">
+            @futurenest.foundation.pk
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <h3>💼 LinkedIn</h3>
+          <a
+            href="https://www.linkedin.com/in/future-nest-655050429/"
+            target="_blank">
+            FutureNest Foundation
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <h3>FutureNest Foundation</h3>
+          <p>
+            Working for a future where education, healthcare, skills and
+            dignity are accessible to vulnerable communities.
+          </p>
+        </div>
+
+        <div>
+          <h3>Programs</h3>
+          <a href="#programs">Education</a>
+          <a href="#programs">Healthcare</a>
+          <a href="#programs">Girls' Skills</a>
+          <a href="#programs">Community Support</a>
+        </div>
+
+        <div>
+          <h3>Follow</h3>
+          <a href="https://www.instagram.com/futurenest.foundation.pk/" target="_blank">
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com/in/future-nest-655050429/" target="_blank">
+            LinkedIn
+          </a>
+          <a href="mailto:futurenest.11foundation@gmail.com">
+            Email Us
+          </a>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        © 2026 FutureNest Foundation. All rights reserved.
+      </div>
+
+    </div>
+  </footer>
+
 </body>
-</html>
-
-
+        </html>
